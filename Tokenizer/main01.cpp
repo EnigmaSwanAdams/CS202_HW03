@@ -9,6 +9,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <istream>
+#include "TokenAndPosition.h"
+
 
 using std::string;
 using std::ifstream;
@@ -18,17 +21,26 @@ using std::endl;
 
 
 int main() { // later the main needs to take a comand line argument
+
+	
 	string fileName = "test.txt";
-	int lineNum = 0; // eventual line counter 
+	int lineNum = 0; // eventual line counter (maybe)
+	vector<TokenAndPosition> stuff;
+	
 	
 		// open file
 		ifstream fin(fileName);
+
 		// error checking
 		if (!fin) { cout << "Error opening " << fileName << endl; return 1; }
 		cout << "Opened " << fileName << endl;
 
+
+		stuff = readLines(fin);
+
+
+		/*
 		// read in a file line my line 
-		// call readlines here????
 		while (true) {
 			string line;
 			getline(fin, line);
@@ -44,8 +56,18 @@ int main() { // later the main needs to take a comand line argument
 			// process line here 
 			 
 		}
+		*/
 
-		// then print with printTokens function
+		//then print with printTokens function
 
+	
+
+	/*
+	string lineTest = "HELLO my guy :> what is up? ! WHAT";
+	vector<string> vecTest = lineToTokens(lineTest);
+	for (auto i : vecTest) {
+		cout << i << endl;
+	}
+	/*
 	return 0;
 }
