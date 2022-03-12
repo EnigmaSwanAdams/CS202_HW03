@@ -25,7 +25,7 @@ int main() { // later the main needs to take a comand line argument
 	
 	string fileName = "test.txt";
 	int lineNum = 0; // eventual line counter (maybe)
-	vector<TokenAndPosition> stuff;
+	vector<TokenAndPosition> tokens;
 	
 	
 		// open file
@@ -35,31 +35,11 @@ int main() { // later the main needs to take a comand line argument
 		if (!fin) { cout << "Error opening " << fileName << endl; return 1; }
 		cout << "Opened " << fileName << endl;
 
+		// process file
+		tokens = readLines(fin);
 
-		stuff = readLines(fin);
-
-
-		/*
-		// read in a file line my line 
-		while (true) {
-			string line;
-			getline(fin, line);
-
-			if (!fin) { // error checking
-				//if there is a problem with getline
-				if (fin.eof()) { cout << "Finished reading (reached eof)" << endl; }
-				else { cout << "Error reading" << endl; }
-				break;
-			}
-			
-			 
-			// process line here 
-			 
-		}
-		*/
-
-		//then print with printTokens function
-
+		//print tokens
+		//printTokens(ostream & os, const vector<TokenAndPosition>&tokens)
 	
 
 	/*
@@ -68,6 +48,7 @@ int main() { // later the main needs to take a comand line argument
 	for (auto i : vecTest) {
 		cout << i << endl;
 	}
-	/*
+	*/
+
 	return 0;
 }

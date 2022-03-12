@@ -27,6 +27,9 @@ struct TokenAndPosition {
 	int _line  = -1;
 	unsigned int _column;
 
+	// quick constructor
+	TokenAndPosition(string token, int line, unsigned int column) : _token(token), _line(line), _column(column) {}
+	
 };
 
 vector<string> lineToTokens(const string& line);

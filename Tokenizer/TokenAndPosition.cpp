@@ -21,7 +21,7 @@ using std::endl;
 using std::cout;
 
 
-// member functions
+
 vector<string> lineToTokens(const string& line) {
 	vector<string> vec;
 	int len = 0; // the length of the current word
@@ -42,10 +42,14 @@ vector<string> lineToTokens(const string& line) {
 }
 
 vector<TokenAndPosition> readLines(istream& is) {
-	vector<TokenAndPosition> vec;
+	vector<TokenAndPosition> vecStuff;
+	int counter = 0; // counts number of lines
 
 	while (true) {
+		vector<string> vecStrs;
 		string line;
+		counter++; // starts from line 1 
+
 		getline(is, line);
 
 		if (!is) { // error checking
@@ -56,14 +60,26 @@ vector<TokenAndPosition> readLines(istream& is) {
 		}
 
 
-		// process line here 
+		// process line 
+		vecStrs = lineToTokens(line); // break line into tokens
+		for (int i = 0; i < vecStrs.size(); i++) { // process tokens 
+			vecStuff.push_back(TokenAndPosition(vecStrs.at(i), counter, i+1));
+		}
+
 
 	}
-	return vec;
+	return vecStuff;
 }
+
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
 
 
 	return;
 }
+
+/*
+string _token = "TOKEN NOT FOUND";
+int _line = -1;
+unsigned int _column;
+*/
