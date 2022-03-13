@@ -23,20 +23,37 @@ using std::cout;
 
 
 vector<string> lineToTokens(const string& line) {
+	//cout << "line: " << line << endl;
 	vector<string> vec;
 	int len = 0; // the length of the current word
 	int pos = 0; // the position we recorded the last space at (+1 to avoid copying the space character)
+	auto lastIt = line.begin(); // the last iterator before i
 
 	for (auto i = line.begin(); i < line.end(); i++) {
-		if(*i == ' '){ 
-			vec.push_back(line.substr(pos, len));
+
+		if (*lastIt == ' ') {
+			pos = i - line.begin();
+			len = 0;
+			// and move on...
+		}
+
+		else if(*i == ' '){
+			string newToken = line.substr(pos, len);
+			//cout << "len: "<< len << "newToken: " << newToken << endl;
+
+			vec.push_back(newToken);
 			len = 0;
 			pos = i - line.begin() + 1;
 		}
+
 		len++;
+		lastIt = i;
 	}
 
-	vec.push_back(line.substr(pos)); // get the last word 
+	if (line.back() != ' ') {
+		vec.push_back(line.substr(pos)); // get the last word 
+	}
+	
 
 	return vec;
 }
@@ -51,7 +68,8 @@ vector<TokenAndPosition> readLines(istream& is) {
 		counter++; // starts from line 1 
 
 		getline(is, line);
-
+		//cout << "'" << line << "'" << endl;
+		//cout << size(line) << endl;
 		if (!is) { // error checking
 			//if there is a problem with getline
 			if (is.eof()) { cout << "Finished reading (reached eof)" << endl; }
@@ -59,13 +77,24 @@ vector<TokenAndPosition> readLines(istream& is) {
 			break;
 		}
 
-
 		// process line 
-		vecStrs = lineToTokens(line); // break line into tokens
-		for (int i = 0; i < vecStrs.size(); i++) { // process tokens 
-			vecStuff.push_back(TokenAndPosition(vecStrs.at(i), counter, i+1));
-		}
+		if (size(line) > 0) {
+			vecStrs = lineToTokens(line); // break line into token
+			int found = -1; // place the token was found at 
+			int pos = 0; // starting position the find looks from
 
+
+			for (int i = 0; i < vecStrs.size(); i++) { // process tokens 
+			
+					found = line.find(vecStrs.at(i), pos);
+					size_t column = found + 1; 
+					vecStuff.push_back(TokenAndPosition(vecStrs.at(i), counter, column));
+					pos = found + 1; // can always do this since the strings in line will be in 
+					// the same order in vecStrs
+				
+			}
+
+		}
 
 	}
 	return vecStuff;
@@ -73,13 +102,60 @@ vector<TokenAndPosition> readLines(istream& is) {
 
 
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
+	// find largest line number and largest column number
+	int lineMax = 0;
+	int columnMax = 0;
+	for (int i = 0; i < tokens.size(); i++) {
+		if (tokens.at(i)._line > lineMax) { 
+			lineMax = tokens.at(i)._line; 
+		}
+		if (tokens.at(i)._column > columnMax) {
+			columnMax = tokens.at(i)._column;
+		}
+	}
 
+	// find the number of digits in each 
+	int lineMaxDige = findNumDigits(lineMax);
+	int columnMaxDige = findNumDigits(columnMax);
+
+	// print stuff 
+	for (int i = 0; i < tokens.size(); i++) {
+		
+		//os << "Line " << tokens.at(i)._line << ", Column " << tokens.at(i)._column << ":" << tokens.at(i)._token << endl;
+		os << "Line ";
+		
+		// find number of digits in current line and column number 
+		int lineDigits = findNumDigits(tokens.at(i)._line);
+		int columnDigits = findNumDigits(tokens.at(i)._column);
+		// find the number of spaces we need to print
+		int spacesL = lineMaxDige - lineDigits;
+		int spacesC = columnMaxDige - columnDigits;
+		
+		while (spacesL > 0) {
+			os << " ";
+			spacesL--;
+		}
+
+		os << tokens.at(i)._line << ", Column ";
+
+		while (spacesC > 0) {
+			os << " ";
+			spacesC--;
+		}
+		
+		os << tokens.at(i)._column << ": \"" << tokens.at(i)._token << "\"" << endl;
+
+	}
 
 	return;
 }
 
-/*
-string _token = "TOKEN NOT FOUND";
-int _line = -1;
-unsigned int _column;
-*/
+
+int findNumDigits(int num) {
+	int numDigits = 0;
+	while (num != 0) {
+		num = num / 10;
+		numDigits++;
+	}
+	return numDigits;
+}

@@ -35,6 +35,7 @@ struct TokenAndPosition {
 vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
+int findNumDigits(int num);
 
 
 

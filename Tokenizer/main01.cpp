@@ -24,7 +24,6 @@ int main() { // later the main needs to take a comand line argument
 
 	
 	string fileName = "test.txt";
-	int lineNum = 0; // eventual line counter (maybe)
 	vector<TokenAndPosition> tokens;
 	
 	
@@ -39,11 +38,12 @@ int main() { // later the main needs to take a comand line argument
 		tokens = readLines(fin);
 
 		//print tokens
-		//printTokens(ostream & os, const vector<TokenAndPosition>&tokens)
+
+		printTokens(cout, tokens);
 	
 
 	/*
-	string lineTest = "HELLO my guy :> what is up? ! WHAT";
+	string lineTest = "HELLO my guy :> what is up?   ! WHAT";
 	vector<string> vecTest = lineToTokens(lineTest);
 	for (auto i : vecTest) {
 		cout << i << endl;
