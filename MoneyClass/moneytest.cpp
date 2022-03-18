@@ -109,7 +109,7 @@ TEST_CASE( "Money arithmetic operators") {
    m12 = mc1;
    REQUIRE(m12 == mc1);
 
-   (m2 -= mc1) = m0;
+   (m2 -= mc1) = m0; 
    REQUIRE(m2==m0);
 
    (m2 += mc1) = m0;

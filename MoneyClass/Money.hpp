@@ -12,6 +12,12 @@ public:
     // one double for both cents and dollars
     Money(double);
 
+    //copy constructor
+    /*
+    Money(const Money& orig);
+    Money& operator=(const Money& orig);
+    */
+
     // ostream handler for printing 
     friend std::ostream& operator<<(std::ostream& out, const Money& a);
     bool operator==(const Money& a) const;
@@ -20,16 +26,16 @@ public:
     bool operator>(const Money& a) const;
     bool operator>=(const Money& a) const;
     bool operator<(const Money& a) const;
-    Money operator+=(const Money& rhs);
-    Money operator*=(const Money& rhs);
+    Money & operator+=(const Money& rhs);
+    Money & operator*=(const Money& rhs);
     friend Money operator*(const Money& lhs, const Money& rhs);
     friend Money operator+(const Money& lhs, const Money& rhs);
-    Money operator-=(const Money& rhs);
-    Money operator/=(const Money& rhs);
+    Money & operator-=(const Money& rhs);
+    Money & operator/=(const Money& rhs);
     friend Money operator/(const Money& lhs, const Money& rhs);
     friend Money operator-(const Money& lhs, const Money& rhs);
-    Money operator*=(const double rhs);
-    Money operator/=(const double rhs);
+    Money & operator*=(const double rhs);
+    Money & operator/=(const double rhs);
 
 
 private:
