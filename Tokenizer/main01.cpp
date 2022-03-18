@@ -11,6 +11,7 @@
 #include <fstream>
 #include <istream>
 #include "TokenAndPosition.h"
+#include <stdio.h>
 
 
 using std::string;
@@ -20,13 +21,17 @@ using std::cout;
 using std::endl;
 
 
-int main() { // later the main needs to take a comand line argument
+int main(int argc, char *argv[]) { // later the main needs to take a comand line argument
 
-	
-	string fileName = "test.txt";
-	vector<TokenAndPosition> tokens;
-	
-	
+	if (argc < 2 || argc > 3) {
+		cout << "\nIncorrect number of arguments specified\n";
+	}
+
+	else {
+		string fileName = argv[1]; // second arguments should be the filename 
+		vector<TokenAndPosition> tokens;
+
+
 		// open file
 		ifstream fin(fileName);
 
@@ -38,9 +43,15 @@ int main() { // later the main needs to take a comand line argument
 		tokens = readLines(fin);
 
 		//print tokens
-
-		printTokens(cout, tokens);
-	
+		if (argc == 3) {
+			if (argv[2] == "--lineonly") {
+				printTokens(cout, tokens); // I think it works I just need to add the option for a comand line argument
+			}
+			else {
+				cout << "\nInvalid third argument specified\n";
+			}
+		}
+	}
 
 	/*
 	string lineTest = "HELLO my guy :> what is up?   ! WHAT";
