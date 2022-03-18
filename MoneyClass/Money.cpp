@@ -59,6 +59,22 @@ Money Money::operator*=(const Money& rhs) {
     return *this;
 }
 
+// multiplication version for a double so 2 cents * 2.0  = 4 cents insead of 
+// 4 dollars (with only the above += operand the double gets converted to a Money object so 
+// 2 cents * 2.0 = 400 cents since 2.0 get converted to a Money object with _cent = 200 
+Money Money::operator*=(const double rhs) {
+    Money temp{ static_cast<int>(std::round(rhs)) }; \
+    *this *= temp;
+    return *this;
+}
+
+// multiplication for a MOney object with a float
+Money Money::operator/=(const double rhs) {
+    Money temp{ static_cast<int>(std::round(rhs)) }; 
+        *this /= temp;
+    return *this;
+}
+
 Money Money::operator+=(const Money& rhs) {
     _cents = _cents + rhs._cents;
     return *this;
