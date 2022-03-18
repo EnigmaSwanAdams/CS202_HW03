@@ -144,9 +144,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main01.cpp" />
+    <ClCompile Include="StopWatch.cpp" />
     <ClCompile Include="TokenAndPosition.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="StopWatch.h" />
     <ClInclude Include="TokenAndPosition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
