@@ -7,8 +7,6 @@
 *
 */
 
-
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -36,9 +34,6 @@ vector<string> lineToTokens(const string& line);
 vector<TokenAndPosition> readLines(istream& is);
 void printTokens(ostream& os, const vector<TokenAndPosition>& tokens);
 int findNumDigits(int num);
-
-
-
 
 
 #endif /* TOKENANDPOSITION_H_ */

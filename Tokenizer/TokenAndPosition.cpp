@@ -7,8 +7,6 @@
 * 
 */
 
-
-
 #include "TokenAndPosition.h"
 #include <vector>
 #include <istream>
@@ -23,7 +21,6 @@ using std::cout;
 
 
 vector<string> lineToTokens(const string& line) {
-	//cout << "line: " << line << endl;
 	vector<string> vec;
 	int len = 0; // the length of the current word
 	int pos = 0; // the position we recorded the last space at (+1 to avoid copying the space character)
@@ -39,8 +36,6 @@ vector<string> lineToTokens(const string& line) {
 
 		else if(*i == ' '){
 			string newToken = line.substr(pos, len);
-			//cout << "len: "<< len << "newToken: " << newToken << endl;
-
 			vec.push_back(newToken);
 			len = 0;
 			pos = i - line.begin() + 1;
@@ -68,8 +63,6 @@ vector<TokenAndPosition> readLines(istream& is) {
 		counter++; // starts from line 1 
 
 		getline(is, line);
-		//cout << "'" << line << "'" << endl;
-		//cout << size(line) << endl;
 		if (!is) { // error checking
 			//if there is a problem with getline
 			if (is.eof()) { cout << "Finished reading (reached eof)" << endl; }
@@ -120,8 +113,6 @@ void printTokens(ostream& os, const vector<TokenAndPosition>& tokens) {
 
 	// print stuff 
 	for (int i = 0; i < tokens.size(); i++) {
-		
-		//os << "Line " << tokens.at(i)._line << ", Column " << tokens.at(i)._column << ":" << tokens.at(i)._token << endl;
 		os << "Line ";
 		
 		// find number of digits in current line and column number 

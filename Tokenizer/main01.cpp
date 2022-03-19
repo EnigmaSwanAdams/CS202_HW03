@@ -43,7 +43,6 @@ int main(int argc, char *argv[]) {
 			else {
 				cout << "incorrect third command specified\n";
 				argc--; // edit it so it looks like no third argument was specifed
-				// and act accordingly
 			}
 		}
 		
@@ -64,20 +63,13 @@ int main(int argc, char *argv[]) {
 
 		//print tokens if there is no third argument specified
 		if (argc == 2) {
-			printTokens(cout, tokens); // I think it works I just need to add the option for a comand line argument	
+			printTokens(cout, tokens);
 		}
 		sw.Stop();
 
 		cout << "Total time in milliseconds: " << sw.TimeMilliSec();
 	}
 
-	/*
-	string lineTest = "HELLO my guy :> what is up?   ! WHAT";
-	vector<string> vecTest = lineToTokens(lineTest);
-	for (auto i : vecTest) {
-		cout << i << endl;
-	}
-	*/
 
 	return 0;
 }

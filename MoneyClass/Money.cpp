@@ -1,4 +1,9 @@
-
+/*
+* CS 202 homework 3
+* 3/18/2022
+*
+* file containing class defintion for Money class 
+*/
 
 
 #include "Money.hpp"
@@ -7,7 +12,6 @@
 
 // can be declared with either a float representing dollars and cents, 
 // or an int representing cents and an int representing dollars
-// dAndc does include fractions of a penny, but those are rounded out when we print (hope thats okay)
 
 // defualt constructor
 Money::Money() : _cents{ 0 } {}
@@ -16,14 +20,6 @@ Money::Money(int cents, int dollars) : _cents{ cents + 100 * dollars } {}
 // one double for both cents and dollars
 Money::Money(double dAndc) : _cents{ static_cast<int>(std::round(dAndc * 100))} {}
 
-// copy constructor
-/*
-Money::Money(const Money& orig) : _cents{ orig._cents } {}
-Money& Money::operator=(const Money& orig) {
-    _cents = orig._cents;
-    return *this;
-}
-*/
 
 // ostream handler
 std::ostream& operator<<(std::ostream& out, const Money& a) {
