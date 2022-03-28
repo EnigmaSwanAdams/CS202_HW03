@@ -37,5 +37,6 @@ int findNumDigits(int num);
 //makes a vector of strings containing one line with 
 // maxChr number of characters 
 vector<string> reformat(int maxChr, const vector<TokenAndPosition>& tokens);
+int strToIntAscii(string str);
 
 #endif /* TOKENANDPOSITION_H_ */

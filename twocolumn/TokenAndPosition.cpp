@@ -177,3 +177,15 @@ vector<string> reformat(int maxChr, const vector<TokenAndPosition>& tokens) {
 
 	return lines;
 }
+
+
+int strToIntAscii(string str) {
+	int num = 0;
+	for (int i = 0; i < str.length() - 1; i++) {
+		int digit = str[i] - 48;
+		num += digit;
+		num *= 10;
+	}
+	num += (str[str.length() - 1] - 48);
+	return num;
+}

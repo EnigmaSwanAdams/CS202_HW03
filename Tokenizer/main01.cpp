@@ -6,6 +6,7 @@
 * Main Program 1: A Simple Tokenizer
 */
 
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -53,6 +54,12 @@ int main(int argc, char *argv[]) {
 		// open file
 		ifstream fin(fileName);
 
+		// get file size in bytes
+		fin.seekg(0, std::ios::end);
+		int fileSize = fin.tellg();
+		// go back to the begining 
+		fin.seekg(0);
+
 		// error checking
 		if (!fin) { cout << "Error opening " << fileName << endl; return 1; }
 		cout << "Opened " << fileName << endl;
@@ -66,8 +73,12 @@ int main(int argc, char *argv[]) {
 			printTokens(cout, tokens);
 		}
 		sw.Stop();
-
+        
+		
 		cout << "Total time in milliseconds: " << sw.TimeMilliSec();
+
+		//print it in MB/seconds to process it 
+		cout << "\nProcessed at " << fileSize/1000/sw.TimeSec() << " KB per second"; 
 	}
 
 
