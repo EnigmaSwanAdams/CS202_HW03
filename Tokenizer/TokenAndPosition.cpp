@@ -20,8 +20,10 @@ using std::cout;
 
 
 
+
 vector<string> lineToTokens(const string& line) {
 	vector<string> vec;
+	
 	int len = 0; // the length of the current word
 	int pos = 0; // the position we recorded the last space at (+1 to avoid copying the space character)
 	auto lastIt = line.begin(); // the last iterator before i

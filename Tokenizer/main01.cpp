@@ -22,9 +22,43 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+//dummy function
+int myPrint(vector<string> &num) {
+	cout << num.at(0) << endl;
+	return 0;
+}
 
 int main(int argc, char *argv[]) {
 
+	/* // some testing for when I wrote a shell in cs 321 
+	* // with a vector holding function pointers etc.  (unrelated to the rest of this assignment/solution
+	//void (*functPtr) = &myPrint;
+	vector<int(*)(vector<string>& )> v{ &myPrint };
+	//v.push_back(&myPrint);
+
+	/*
+	string hi = "hi";
+	char **hello;
+
+	(*myPrint)(hi);
+	cout << "done\n";
+	v.at(0)(hi);
+	myPrint(hi);
+	
+
+	vector<string> vec{ "hi", "hello" };
+	(*myPrint)(vec);
+	v.at(0)(vec);
+	myPrint(vec);
+
+	cout << vec.size();
+	cout << vec.at(1).c_str();
+	char** args[6];
+	//strdup(*args[0]);
+	*/
+
+
+	
 	// stopwatch object to time it
 	// only times the readlines and or printlines function 
 	StopWatch sw; 
@@ -80,7 +114,7 @@ int main(int argc, char *argv[]) {
 		//print it in MB/seconds to process it 
 		cout << "\nProcessed at " << fileSize/1000/sw.TimeSec() << " KB per second"; 
 	}
-
+	
 
 	return 0;
 }
